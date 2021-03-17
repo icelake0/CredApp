@@ -93,9 +93,8 @@ class AlertUsersOfThresholdsJob implements ShouldQueue
         foreach ($this->exchange_rates as $currency => $exchange_rate)
             if (
                 isset($this->alert_thresholds[$currency])
-                && $exchange_rate <= $this->alert_thresholds[$currency] ///TODO revove =
-            )
-                $this->exchange_rates_requiring_alert[$currency] = $exchange_rate;
+                && $exchange_rate < $this->alert_thresholds[$currency]
+            ) $this->exchange_rates_requiring_alert[$currency] = $exchange_rate;
     }
 
     /**

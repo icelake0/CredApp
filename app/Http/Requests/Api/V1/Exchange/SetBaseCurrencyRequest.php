@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\V1;
+namespace App\Http\Requests\Api\V1\Exchange;
 
 use App\Http\Api\AbstractApiRequest;
+use Illuminate\Validation\Rule;
 
-class RegisterRequest extends AbstractApiRequest
+class SetBaseCurrencyRequest extends AbstractApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +25,7 @@ class RegisterRequest extends AbstractApiRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|confirmed|min:6',
+            'base_currency' => ['required', Rule::in(config('app.fixer_currency'))],
         ];
     }
 

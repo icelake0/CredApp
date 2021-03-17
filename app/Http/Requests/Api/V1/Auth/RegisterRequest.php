@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\V1;
+namespace App\Http\Requests\Api\V1\Auth;
 
 use App\Http\Api\AbstractApiRequest;
 
-class LoginRequest extends AbstractApiRequest
+class RegisterRequest extends AbstractApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class LoginRequest extends AbstractApiRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'name' => 'required|string|between:2,100',
+            'email' => 'required|string|email|max:100|unique:users',
+            'password' => 'required|string|confirmed|min:6',
         ];
     }
 

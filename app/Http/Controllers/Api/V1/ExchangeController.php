@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\LoginRequest;
+use App\Http\Requests\Api\V1\Exchange\SetAlertThresholdRequest;
+use App\Http\Requests\Api\V1\Exchange\SetBaseCurrencyRequest;
 use App\Http\Responser;
 use App\Services\ExchangeService;
 use Illuminate\Http\Request;
@@ -32,9 +33,8 @@ class ExchangeController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function setBaseCurrency(Request $request)
+    public function setBaseCurrency(SetBaseCurrencyRequest $request)
     {
-        //TODO add Request validation
         $message = $this->exchange_service->updateUserBaseCurrency(
             auth()->user(),
             $request->base_currency
@@ -63,9 +63,8 @@ class ExchangeController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function setAlertThreshold(Request $request)
+    public function setAlertThreshold(SetAlertThresholdRequest $request)
     {
-        //TODO add Request validation
         $message = $this->exchange_service->setAlertThreshold(
             auth()->user(),
             $request->currency,

@@ -62,4 +62,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    /**
+     * User has many AlertThreshold relation
+     * 
+     * @return mixed
+     */
+    public function alertThresholds()
+    {
+        return $this->hasMany(AlertThreshold::class);
+    }
 }

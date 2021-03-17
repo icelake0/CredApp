@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Helpers\FixerCurlClient;
+use App\Models\AlertThreshold;
 use App\Models\User;
 
 class ExchangeService
@@ -40,5 +41,14 @@ class ExchangeService
             'Listing exchange rates for base currency',
             $fixer->data
         );
+    }
+
+    public function setAlertThreshold(User $user, string $currency, float $threshold)
+    {
+        AlertThreshold::updateOrCreate([
+            'user_id' => $user->id,
+            'currency' => $currency
+        ], ['threshold' => $threshold]);
+        return ServiceResponse::make(true, 'Alert threshold set successfully');
     }
 }

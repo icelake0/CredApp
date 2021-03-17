@@ -34,6 +34,7 @@ Route::group([
         Route::group(['prefix' => '/exchange'], function () {
             Route::match(['put', 'patch'], '/set-base-currency', ['uses' => 'ExchangeController@setBaseCurrency',  'as' => 'api.v1.exchange.setBaseCurrency']);
             Route::get('/rates', ['uses' => 'ExchangeController@listCurrenciesWithExchangeRate',  'as' => 'api.v1.exchange.rates']);
+            Route::post('/set-alert-threshold', ['uses' => 'ExchangeController@setAlertThreshold',  'as' => 'api.v1.exchange.setAlertThreshold']);
         });
     });
 });

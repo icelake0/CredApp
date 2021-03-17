@@ -42,6 +42,11 @@ class ExchangeController extends Controller
         return Responser::send(200, [], $message);
     }
 
+    /**
+     * List Exchange Rates for Auth User
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function listCurrenciesWithExchangeRate()
     {
         $service_response =  $this->exchange_service
@@ -51,5 +56,21 @@ class ExchangeController extends Controller
         return $service_response->success
             ? Responser::send(200, $service_response->data, $service_response->message)
             : Responser::sendError(400, $service_response->message, $service_response->message);
+    }
+
+    /**
+     * Set an AlertThreshold for Auth user
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function setAlertThreshold(Request $request)
+    {
+        //TODO add Request validation
+        $message = $this->exchange_service->setAlertThreshold(
+            auth()->user(),
+            $request->currency,
+            $request->threshold
+        )->message;
+        return Responser::send(200, [], $message);
     }
 }

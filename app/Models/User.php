@@ -21,6 +21,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'base_currency'
     ];
 
     /**
@@ -60,5 +61,15 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * User has many AlertThreshold relation
+     * 
+     * @return mixed
+     */
+    public function alertThresholds()
+    {
+        return $this->hasMany(AlertThreshold::class);
     }
 }

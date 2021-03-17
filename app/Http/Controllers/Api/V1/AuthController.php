@@ -3,23 +3,13 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\LoginRequest;
-use App\Http\Requests\V1\RegisterRequest;
+use App\Http\Requests\Api\V1\Auth\LoginRequest;
+use App\Http\Requests\Api\V1\Auth\RegisterRequest;
 use App\Http\Responser;
 use App\Models\User;
 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
-
     /**
      * Get a JWT via given credentials.
      *

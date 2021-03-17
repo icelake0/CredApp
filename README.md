@@ -73,12 +73,11 @@ You can see APIs details in postman collection.
     ```bash
     localhost:8000
     ```
-## Testing Apis on Local Host
+11) The App is set to send threshold notification hourly, but you can manually trigger the notification by running the command below in the root directory of the app.
 
-- Host : http://localhost:8000
-- Post man collection: https://www.getpostman.com/collections/3ffd2fd24b00d0087a99
-
-    [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/3ffd2fd24b00d0087a99)
+    ```bash
+    php artisan threshold:alert-users
+    ```
 
 ## Testing Apis on Heroku
 
@@ -86,6 +85,10 @@ You can see APIs details in postman collection.
 - Post man collection: https://www.getpostman.com/collections/c17c10d64e264a406fd6
 
     [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c17c10d64e264a406fd6)
+
+## Testing Apis on Local Host
+
+> To test on local your local, symply change the host variable in the postman collection to your localhost url eg localhost:8080
 
 ## License
 This was built with Laravel framework

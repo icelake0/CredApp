@@ -36,5 +36,6 @@ Route::group([
             Route::get('/rates', ['uses' => 'ExchangeController@listCurrenciesWithExchangeRate',  'as' => 'api.v1.exchange.rates']);
             Route::post('/set-alert-threshold', ['uses' => 'ExchangeController@setAlertThreshold',  'as' => 'api.v1.exchange.setAlertThreshold']);
         });
+        Route::post('/calculate-repayment', ['uses' => 'ExchangeController@calculateRepayment',  'as' => 'api.v1.calculateRepayment']);
     });
 });

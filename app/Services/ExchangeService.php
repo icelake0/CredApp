@@ -43,6 +43,14 @@ class ExchangeService
         );
     }
 
+    /**
+     * Set AlertThreshold for auth user
+     * 
+     * @param User $user
+     * @param string $currency
+     * @param float $threshold
+     * @return ServiceResponse
+     */
     public function setAlertThreshold(User $user, string $currency, float $threshold)
     {
         AlertThreshold::updateOrCreate([
@@ -50,5 +58,34 @@ class ExchangeService
             'currency' => $currency
         ], ['threshold' => $threshold]);
         return ServiceResponse::make(true, 'Alert threshold set successfully');
+    }
+
+    /**
+     * Set AlertThreshold for auth user
+     * 
+     * @param  float $amount
+     * @param  int $tenure
+     * @param int $repayment_day
+     * @param float $interest
+     * @return ServiceResponse
+     */
+    public function calculateRepayment(
+        float $amount,
+        int $tenure,
+        int $repayment_day,
+        float $interest
+    ) {
+        $month_repayment = [];
+        $total_repayment = $amount + $amount * $interest / 100;
+        $porated_repayment = $total_repayment / $tenure;
+        for ($i = 1; $i <= $tenure; $i++)
+            $month_repayment[] = [
+                'amount' => $porated_repayment,
+                'date' => "{$repayment_day}/{$i}/2021"
+            ];
+        return ServiceResponse::make(true, 'Repayment calculated successfully', [
+            'total_repayment' => $total_repayment,
+            'montly_repayment' => $month_repayment
+        ]);
     }
 }

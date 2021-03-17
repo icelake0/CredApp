@@ -88,7 +88,7 @@ You can see APIs details in postman collection.
 
 ## Testing Apis on Local Host
 
-> To test on your local, simply change the host variable in the postman collection to your localhost url eg localhost:8080
+> To test on your local, simply change the host variable in the postman collection to your localhost url eg localhost:8000
 
 ## License
 This was built with Laravel framework

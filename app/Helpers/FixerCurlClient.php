@@ -64,10 +64,9 @@ class FixerCurlClient
      */
     protected function init()
     {
-        //TODO move this to config then env
         $this->client = new Client;
-        $this->host = 'http://data.fixer.io';
-        $this->api_key = 'a7da3e7660c043cd877f07a5c94db8f7';
+        $this->host = config('app.fixer_host');
+        $this->api_key = config('app.fixer_api_key');
         $this->error = 'We are currently unable to connect to the exchange rate server';
     }
 
@@ -85,12 +84,14 @@ class FixerCurlClient
      * Get exchange rates for base currency
      * 
      * @param string $base
+     * @param array|null $currencies
      * @return bool
      */
-    public function getExchangeRates(string $base): bool
+    public function getExchangeRates(string $base, array $currencies = []): bool
     {
         $this->setUrl("/api/latest", [
-            'base' => $base
+            'base' => $base,
+            'symbols' => implode(',', $currencies)
         ]);
         try {
             $response = $this->client->get($this->url);

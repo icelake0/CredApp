@@ -123,6 +123,17 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+     /*
+    |--------------------------------------------------------------------------
+    | Fixer configes
+    |--------------------------------------------------------------------------
+    |
+    | All Fixer related configs goes here
+    |
+    */
+    'fixer_host' => env('FIXER_HOST', 'http://data.fixer.io'),
+    'fixer_api_key' => env('FIXER_API_KEY', null),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
